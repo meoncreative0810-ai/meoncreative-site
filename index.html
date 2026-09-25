@@ -107,8 +107,8 @@
   .door{
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     gap:.7rem;
-    width:clamp(108px,31vw,128px);
-    padding:1.35rem .5rem 1.1rem;
+    width:clamp(122px,36vw,148px);
+    padding:1.5rem .6rem 1.25rem;
     border-radius:20px;
     border:1px solid rgba(240,233,218,.28);
     background:rgba(18,26,44,.45);
@@ -120,10 +120,10 @@
     transition:transform .3s,background .3s,border-color .3s,box-shadow .3s;
   }
   .door svg{stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8;filter:blur(.8px);transition:filter .8s,opacity .8s}
-  .door > svg{width:32px;height:32px}
+  .door > svg{width:36px;height:36px}
   /* 展示物アイコン:舎の印そのもの——これも展示物のひとつ */
   .tico-logo{
-    width:30px;height:30px;
+    width:36px;height:36px;
     background:currentColor;
     -webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat;
     filter:blur(1.2px);opacity:.5;
@@ -228,6 +228,8 @@
   .exhibit h3{font-family:var(--serif);font-weight:500;font-size:1.05rem;letter-spacing:.14em;margin-bottom:.6rem}
   .exhibit p{font-size:.78rem;color:var(--usugunjo);line-height:2.1}
   .exhibit .etag{margin-top:.9rem;font-size:.66rem;letter-spacing:.2em;color:var(--akari)}
+  .exhibit .etag a{color:var(--akari);text-decoration:none;border-bottom:1px dashed rgba(227,168,78,.5);padding-bottom:.15rem;transition:border-color .3s}
+  .exhibit .etag a:hover{border-bottom-style:solid;border-color:var(--akari)}
   .exhibit.ghost{border-style:dashed;background:transparent;text-align:center;padding:2.2rem 1.6rem}
   .exhibit.ghost .ecap{color:var(--usugunjo)}
   .exhibit.ghost h3{color:transparent;-webkit-text-stroke:.7px var(--kinari);transition:color 1s}
@@ -270,54 +272,12 @@
   <p class="en">mē on seeker</p>
   <p class="copy">存在しない社会、未だ見ぬ私たち<br>非存在社会のための舎</p>
   <nav class="doors">
-    <a class="door" href="#board">
-      <!-- 書きかけのボード:書けた行、書きかけの行(筆先が灯る)、まだ書かれていない行 -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1"/><path d="M7 9.5h10"/><path d="M7 13h5"/><circle class="hi" cx="13.7" cy="13" r="1.1"/><path class="dash" d="M7 16.2h8.5"/></svg>
-      <span>掲示板</span>
-    </a>
     <a class="door" href="#tenji">
       <!-- 台座の上に、おぼろげなロゴ——この舎の印も、また展示物のひとつ -->
       <span class="tico-logo" aria-hidden="true"></span>
       <span>展示物</span>
     </a>
   </nav>
-</div>
-
-<!-- ═══ 掲示板 ═══ -->
-<div class="screen" id="board">
-  <div class="head">
-    <a class="back" href="#home">← 戻る</a>
-    <div class="mini"><span class="logo logo-mini" aria-hidden="true"></span>非存在社会探究舎</div>
-  </div>
-  <h2>掲示板</h2>
-  <p class="sub">BOARD</p>
-  <div class="fuda">
-    <p class="date">2026.08|仲間募集</p>
-    <h3>100人学校をつくる仲間を探しています</h3>
-    <p>「1人のリーダーを育成するのに、100人の学校がいる」。学校から飛び出して新しい価値を創る人と、その人を支える100人の応援団コミュニティを、同時に育てる——まだどこにもない学校のモデルです。これから学校を開きたい人、一緒に開いてみたい人、この紙を見て何か思い浮かんだ人。まずは声をかけてください。</p>
-  </div>
-  <div class="fuda">
-    <p class="date">2026.08|仲間募集</p>
-    <h3>遭遇と対話のフェスを、一緒に企画しませんか</h3>
-    <p>意図された出会いから脱却し、思いがけない他者との「遭遇」そのものを中心に置く場をつくる——場づくりや導線の設計に興味のある人を探しています。</p>
-  </div>
-  <div class="fuda">
-    <p class="date">2026.08|仲間募集</p>
-    <h3>非存在の実在のためのARG、開発仲間を募集</h3>
-    <p>現実と虚構のあわいに「まだ存在しない社会」を立ち上げる、代替現実ゲーム(ARG)の企画開発。物語、ゲームデザイン、技術——どの入口からでも歓迎です。</p>
-  </div>
-  <div class="fuda">
-    <p class="date">2026.08|仲間募集</p>
-    <h3>社会の意思決定をアップデートする調査プロジェクト</h3>
-    <p>「学校を開く」とは何かを問いながら、テクノロジーと共に社会の意思決定機能をアップデートする調査と研究。共同研究者や、対話の相手を探しています。</p>
-  </div>
-  <div class="fuda ghost">
-    <p class="date">いつかの日付</p>
-    <h3>あなたの便り</h3>
-    <p>感想でも、企画でも、ただの挨拶でも。<br>ここに貼られる日を待っています。</p>
-  </div>
-  <p class="board-note">世界の交わりから、まだ見ぬ社会が始まります。</p>
-  <span class="btn" role="button" aria-disabled="true">便りを送る(準備中)</span>
 </div>
 
 <!-- ═══ 展示物 ═══ -->
@@ -332,7 +292,7 @@
     <p class="ecap">展示 No.01|書籍</p>
     <h3>『学校を開く』</h3>
     <p>まだ見ぬ社会を作るための企画書であり、あなたに向けたラブレター。この舎のすべては、この一冊から始まりました。</p>
-    <p class="etag">刊行準備中——ネット販売が始まりましたら、ここから手に取れます</p>
+    <p class="etag"><a href="https://www.amazon.co.jp/dp/4911554134" target="_blank" rel="noopener">この本を手に取る——Amazonで購入 →</a></p>
   </div>
   <div class="exhibit">
     <p class="ecap">展示 No.02|ゲーム</p>
@@ -401,7 +361,7 @@
   resize();reduce?draw(0):requestAnimationFrame(draw);
 
   /* --- 画面遷移(ハッシュ) --- */
-  const screens=['home','board','tenji'];
+  const screens=['home','tenji'];
   function show(){
     let id=(location.hash||'#home').slice(1);
     if(!screens.includes(id))id='home';
