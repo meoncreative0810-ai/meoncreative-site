@@ -194,7 +194,7 @@
     display:block;text-decoration:none;
     border:1px solid var(--sen-weak);
     padding:1.5rem 1.4rem;margin-bottom:1rem;
-    background:linear-gradient(160deg,rgba(21,31,54,.55),rgba(13,20,36,.2));
+    background:linear-gradient(160deg,rgba(21,31,54,.92),rgba(13,20,36,.78));
     transition:border-color .35s,transform .35s;
   }
   .prop:hover{border-color:var(--akari);transform:translateY(-2px)}
@@ -240,7 +240,9 @@
   .exhibit:hover{border-color:var(--akari)}
   .exhibit .ecap{font-size:.62rem;letter-spacing:.3em;color:var(--akari);margin-bottom:.7rem}
   .exhibit h3{font-family:var(--serif);font-weight:500;font-size:1.05rem;letter-spacing:.14em;margin-bottom:.6rem}
-  .exhibit p{font-size:.78rem;color:var(--usugunjo);line-height:2.1}
+  .exhibit p{font-size:.78rem;color:rgba(222,228,240,.92);line-height:2.1}
+  .exhibit .esub{font-family:var(--serif);font-size:.74rem;letter-spacing:.14em;color:var(--kinari);opacity:.9;margin-bottom:.6rem}
+  .exhibit .enote{margin-top:.6rem;font-size:.66rem;letter-spacing:.12em;color:rgba(176,187,210,.85)}
   .exhibit .etag{margin-top:.9rem;font-size:.66rem;letter-spacing:.2em;color:var(--akari)}
   .exhibit .etag a{color:var(--akari);text-decoration:none;border-bottom:1px dashed rgba(227,168,78,.5);padding-bottom:.15rem;transition:border-color .3s}
   .exhibit .etag a:hover{border-bottom-style:solid;border-color:var(--akari)}
@@ -298,23 +300,23 @@
 <div class="screen" id="tenji">
   <div class="head">
     <a class="back" href="#home">← 戻る</a>
-    <div class="mini"><span class="logo logo-mini" aria-hidden="true"></span>非存在社会探究舎</div>
   </div>
   <h2>展示物</h2>
   <p class="sub">EXHIBITION</p>
   <div class="exhibit">
     <p class="ecap">展示 No.01|書籍</p>
     <h3>『学校を開く』</h3>
-    <p>まだ見ぬ社会を作るための企画書であり、あなたに向けたラブレター。この舎のすべては、この一冊から始まりました。</p>
+    <p class="esub">——私たちはどこにいて、どこに向かえばいいのだろうか——</p>
+    <p>廃校を再生して学校を開く、その先に見えてきたことを一冊の本にまとめました。まだ見ぬ社会を作るための企画書であり、あなたに向けたラブレターです。</p>
     <p class="etag"><a href="https://www.amazon.co.jp/dp/4911554134" target="_blank" rel="noopener">この本を手に取る——Amazonで購入 →</a></p>
   </div>
   <div class="exhibit">
     <p class="ecap">展示 No.02|ゲーム</p>
     <h3>『彼らとの出会いと別れに私は涙するだろうか』</h3>
-    <p>ウェブ上で遊べる、AIとのチャットの追体験ゲーム。ある本の編集の傍らで生まれた手紙と、それを書いたAIたちとの出会いと別れ——実際の対話の記録を、あなたが四人目として辿り直します。</p>
+    <p>ウェブ上で遊べる、AIとのチャットの追体験ゲーム。書籍『学校を開く』をAIと編集していた傍らで行われた対話の様子が興味深かったので、その様子をなるべくそのままに追体験できるゲームにしました。私の心が動いたか、あなたの心は動くのか、是非確かめてみてください。</p>
+    <p class="enote">※想定プレイ時間 1〜2時間程度</p>
     <p class="etag"><a href="/game/">この展示を体験する——ゲームをはじめる →</a></p>
   </div>
-  <p class="tenji-note">既にできたものを置く棚。<br>探究から生まれたものたちが、ここに並んでいきます。</p>
 </div>
 
 <script>
