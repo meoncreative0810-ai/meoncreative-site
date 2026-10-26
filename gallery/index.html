@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIアートの展示|探究舎</title>
+<meta name="description" content="指さしただけと言い切れるほどには手放しがたく、私の表現と言い切るにはおこがましい。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIアートの展示|探究舎">
+<meta property="og:description" content="借り物で描かれた表現がいつかより大きな正しさや意味を帯びるのだろうか。">
+<meta property="og:url" content="https://meon-seeker.com/gallery/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yoru:#0d1424;--kinari:#f0e9da;--usugunjo:#8fa1c4;--akari:#e3a84e;
+    --sen-weak:rgba(240,233,218,.14);
+    --serif:'Shippori Mincho B1', serif;--sans:'Zen Kaku Gothic New', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--yoru);color:var(--kinari);
+    font-family:var(--sans);font-weight:300;
+    line-height:2;letter-spacing:.06em;
+  }
+  ::selection{background:var(--akari);color:var(--yoru)}
+  a{color:inherit}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:1.6rem 1.6rem 4rem}
+  .head{display:flex;justify-content:flex-start;margin-bottom:2.4rem}
+  .back{text-decoration:none;font-size:.72rem;letter-spacing:.25em;color:var(--usugunjo);transition:color .3s}
+  .back:hover{color:var(--kinari)}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.35rem,5.5vw,1.7rem);letter-spacing:.24em;margin-bottom:.6rem}
+  .sub{font-size:.7rem;letter-spacing:.3em;color:var(--akari);margin-bottom:2rem}
+  .intro{
+    font-family:var(--serif);font-size:clamp(.82rem,3.2vw,.92rem);
+    color:var(--usugunjo);line-height:2.4;letter-spacing:.1em;
+    max-width:38em;margin-bottom:3rem;
+  }
+
+  /* 展示の格子 */
+  .grid{columns:2 160px;column-gap:.9rem}
+  @media(min-width:720px){.grid{columns:3 220px;column-gap:1.1rem}}
+  @media(min-width:980px){.grid{columns:4 220px}}
+  .work{
+    break-inside:avoid;margin-bottom:.9rem;
+    border:1px solid var(--sen-weak);
+    background:rgba(21,31,54,.4);
+    cursor:pointer;display:block;width:100%;padding:0;
+    transition:border-color .35s,transform .35s;
+  }
+  .work:hover{border-color:var(--akari);transform:translateY(-2px)}
+  .work img{display:block;width:100%;height:auto}
+
+  /* 一枚に灯を当てる */
+  .box{
+    position:fixed;inset:0;z-index:50;display:none;
+    background:rgba(5,8,16,.93);
+    align-items:center;justify-content:center;
+    flex-direction:column;padding:1.2rem;
+  }
+  .box.on{display:flex}
+  .box img{
+    max-width:min(92vw,900px);max-height:72svh;
+    box-shadow:0 0 60px rgba(227,168,78,.08);
+  }
+  .cap{
+    margin-top:1.3rem;text-align:center;max-width:46em;
+    font-family:var(--serif);font-size:.82rem;letter-spacing:.08em;
+    color:var(--kinari);line-height:2;
+    overflow-wrap:anywhere;
+  }
+  .cap .yr{display:block;font-family:var(--sans);font-size:.64rem;letter-spacing:.3em;color:var(--usugunjo);margin-top:.4rem}
+  .nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    font-size:1.6rem;color:var(--usugunjo);background:none;border:none;cursor:pointer;
+    padding:1rem;transition:color .3s;
+  }
+  .nav:hover{color:var(--akari)}
+  #prev{left:.4rem}#next{right:.4rem}
+  #close{position:absolute;top:.8rem;right:1.2rem;font-size:1.4rem;color:var(--usugunjo);background:none;border:none;cursor:pointer;padding:.6rem}
+  #close:hover{color:var(--kinari)}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="head"><a class="back" href="/#tenji">← 展示室へ戻る</a></div>
+  <h1>AIアートの展示</h1>
+  <p class="sub">GALLERY</p>
+  <p class="intro">指さしただけと言い切れるほどには手放しがたく、私の表現と言い切るにはおこがましい。<br>借り物で描かれた表現がいつかより大きな正しさや意味を帯びるのだろうか。</p>
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="box" id="box" role="dialog" aria-modal="true">
+  <button id="close" aria-label="閉じる">×</button>
+  <button class="nav" id="prev" aria-label="前へ">‹</button>
+  <img id="boxImg" src="" alt="">
+  <p class="cap"><span id="boxTitle"></span><span class="yr" id="boxYear"></span></p>
+  <button class="nav" id="next" aria-label="次へ">›</button>
+</div>
+
+<script>
+const WORKS=[
+{f:"work-01.webp",t:"School, Students, Watercolor Paintings",y:2023},
+{f:"work-02.webp",t:"explosionentertainmentpop color 6",y:2023},
+{f:"work-03.webp",t:"schoolseniordeeplearningLecturelaughingclassmatesVarious",y:2023},
+{f:"work-04.webp",t:"Body Using Tools Movement I Art",y:2023},
+{f:"work-05.webp",t:"Favorite thingsgood encounterhappyunknownpope",y:2023},
+{f:"work-06.webp",t:"onlymyselfInquiryMasteryjapanlocal",y:2023},
+{f:"work-07.webp",t:"cyber worldnaturei dont know what to dochaosfuture",y:2023},
+{f:"work-08.webp",t:"abstractNight Party Disco Showa Club Dance",y:2023},
+{f:"work-09.webp",t:"pop art styleJapanesePeople enjoying themselves around a",y:2023},
+{f:"work-10.webp",t:"film-styleblurredFluffySomething like a human being whose",y:2023},
+{f:"work-11.webp",t:"7 year old mind seeing the world excitement",y:2024},
+{f:"work-12.webp",t:"Techno synthesizer DJ illustration",y:2025},
+{f:"work-13.webp",t:"small safflower logo",y:2025},
+{f:"work-14.webp",t:"People looking up at the moon",y:2025},
+{f:"work-15.webp",t:"Space a chick hatching from an egglogo",y:2025},
+{f:"work-16.webp",t:"deepculture",y:2025},
+{f:"work-17.webp",t:"Text Collage deep culturenature",y:2025},
+{f:"work-18.webp",t:"Text Collage deep techtech",y:2025},
+{f:"work-19.webp",t:"Christmas PartypopkidsIllustration",y:2025},
+{f:"work-20.webp",t:"AB testing",y:2026},
+{f:"work-21.webp",t:"Children observing creatures in the rice paddies looki",y:2026},
+{f:"work-22.webp",t:"Book cover imageAbstract Painting SchoolillustrationVe",y:2026},
+{f:"work-23.webp",t:"Book cover imageAbstract Painting SchoolillustrationVe",y:2026},
+{f:"work-24.webp",t:"Several people arguingabstruct art",y:2026},
+{f:"work-25.webp",t:"rivers flow stones polished by the passage of time i",y:2026}
+];
+const grid=document.getElementById('grid');
+WORKS.forEach((w,i)=>{
+  const b=document.createElement('button');
+  b.className='work';
+  b.innerHTML='<img loading="lazy" src="thumbs/'+w.f+'" alt="'+w.t.replace(/"/g,'&quot;')+'">';
+  b.addEventListener('click',()=>open(i));
+  grid.appendChild(b);
+});
+let cur=0;
+const box=document.getElementById('box'),img=document.getElementById('boxImg');
+function open(i){
+  cur=(i+WORKS.length)%WORKS.length;
+  const w=WORKS[cur];
+  img.src='works/'+w.f; img.alt=w.t;
+  document.getElementById('boxTitle').textContent=w.t;
+  document.getElementById('boxYear').textContent=w.y;
+  box.classList.add('on');
+}
+function close(){box.classList.remove('on');img.src='';}
+document.getElementById('close').addEventListener('click',close);
+document.getElementById('prev').addEventListener('click',e=>{e.stopPropagation();open(cur-1)});
+document.getElementById('next').addEventListener('click',e=>{e.stopPropagation();open(cur+1)});
+box.addEventListener('click',e=>{if(e.target===box)close()});
+addEventListener('keydown',e=>{
+  if(!box.classList.contains('on'))return;
+  if(e.key==='Escape')close();
+  if(e.key==='ArrowLeft')open(cur-1);
+  if(e.key==='ArrowRight')open(cur+1);
+});
+</script>
+</body>
+</html>
